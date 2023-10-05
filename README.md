@@ -50,15 +50,8 @@ IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 
 
 fix by removing first 2 elements
 
-```    #for idx, tensor in enumerate(tensor_list):
-    #    print(pad[idx])
-    #    print(pad[idx].tolist())
-    #    print(tuple(pad[idx].tolist()))
-    #    #print(tensor)
-    #    print(tensor.shape)
-    #    #tensor = tensor.unsqueeze(0)
-    #    print(tensor.shape)
-    #    print(batch_tensor)
+```
+    #for idx, tensor in enumerate(tensor_list):
     #    batch_tensor.append(
     #        F.pad(tensor, tuple(pad[idx].tolist()), value=pad_value))
     for idx, tensor in enumerate(tensor_list):
@@ -68,5 +61,4 @@ fix by removing first 2 elements
             current_pad = current_pad[-4:]
         batch_tensor.append(
             F.pad(tensor, tuple(current_pad), value=pad_value))
-    return torch.stack(batch_tensor)
 ```
