@@ -48,7 +48,7 @@ PGD config fails with Padding related
 IndexError: Dimension out of range (expected to be in range of [-3, 2], but got 3)
 ```
 
-fix by removing first 2 elements
+fix by removing first 2 elements in ..//anaconda3/envs/mmdet3d/lib/python3.8/site-packages/mmengine/model/utils.py
 
 ```
     #for idx, tensor in enumerate(tensor_list):
