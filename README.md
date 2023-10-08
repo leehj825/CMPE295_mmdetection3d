@@ -62,3 +62,9 @@ fix by removing first 2 elements in ..//anaconda3/envs/mmdet3d/lib/python3.8/sit
         batch_tensor.append(
             F.pad(tensor, tuple(current_pad), value=pad_value))
 ```
+for another library problem
+```
+pip uninstall open3d-python
+pip3 install open3d
+```
+
