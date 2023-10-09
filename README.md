@@ -68,3 +68,7 @@ pip uninstall open3d-python
 pip3 install open3d
 ```
 
+```
+python demo/pcd_demo.py demo/data/kitti/000008.bin configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune.py work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune/20231008_172104/epoch_7.pth --out-dir
+
+```
