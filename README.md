@@ -197,11 +197,3 @@ for another library problem
 pip uninstall open3d-python
 pip3 install open3d
 ```
-
-```
-python demo/mono_det_demo.py demo/data/kitti/000008.png demo/data/kitti/000008.pkl configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune.py work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune/20231008_172104/epoch_7.pth --cam-type CAM2 --out-dir demo/output.png
-
-```
-
-![image](https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/53d0ff07-80f9-4e02-95b7-62b8d41cb972)
-
