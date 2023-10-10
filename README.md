@@ -3,9 +3,9 @@
 Start from https://github.com/open-mmlab/mmdetection3d
 
 ## Models and Code Bases
-- **Model**: PGD (FCOS3D++)
-
 - **MMDetection3D**: https://github.com/open-mmlab/mmdetection3d
+
+- **Model**: PGD (FCOS3D++) https://github.com/open-mmlab/mmdetection3d/tree/main/configs/pgd
 
 ## Dataset Preparation
 Kitti Dataset for 3D Object Detection: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
