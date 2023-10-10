@@ -116,7 +116,7 @@ Training output
 2023/10/08 11:07:11 - mmengine - INFO - Epoch(train)  [1][   8/1856]  base_lr: 3.4269e-05 lr: 3.4269e-05  eta: 5:42:46  time: 1.1086  data_time: 0.0405  memory: 6177  grad_norm: 158.1040  loss: 38.7946  loss_cls: 0.8901  loss_offset: 1.4160  loss_size: 1.7141  loss_rotsin: 0.6028  loss_dir: 0.7213  loss_depth: 6.6318  loss_kpts: 0.7264  loss_bbox2d: 24.1232  loss_consistency: 1.3116  loss_centerness: 0.6574
 2023/10/08 11:07:12 - mmengine - INFO - Epoch(train)  [1][   9/1856]  base_lr: 3.4402e-05 lr: 3.4402e-05  eta: 5:36:23  time: 1.0880  data_time: 0.0373  memory: 6177  grad_norm: 165.4552  loss: 37.0609  loss_cls: 0.8523  loss_offset: 1.4144  loss_size: 1.6091  loss_rotsin: 0.5995  loss_dir: 0.7442  loss_depth: 6.2100  loss_kpts: 0.7062  loss_bbox2d: 22.9726  loss_consistency: 1.2927  loss_centerness: 0.6598
 ```
-
+### Loss output from Training with 10x epochs
 <img width="922" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/4607003b-126a-49ba-b932-1a46a888ead3">
 
 ## Reference
