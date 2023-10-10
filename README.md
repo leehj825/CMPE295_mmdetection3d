@@ -28,7 +28,7 @@ Refer: https://mmdetection3d.readthedocs.io/en/latest/user_guides/dataset_prepar
 │   │   │   ├── velodyne
 ```
 
-### Script to convert to COCO format annotation
+### Script to create kitti pickle annotation files
 ```
 python tools/create_data.py kitti --root-path ./data/kitti --out-dir ./data/kitti --extra-tag kitti
 ```
@@ -42,6 +42,33 @@ python tools/create_data.py kitti --root-path ./data/kitti --out-dir ./data/kitt
 | Car        | 14352  |
 +------------+--------+
 ```
+### Waymo tfrecord to kitti format
+Download tfrecords (1.4.1) from here https://waymo.com/open/download/
+
+#### Waymo format structure
+```
+│   ├── waymo
+│   │   ├── waymo_format (each subfolder containing tfrecord files)
+│   │   │   ├── testing
+│   │   │   ├── testing_3d_camera_only_detection
+│   │   │   ├── training
+│   │   │   ├── validation
+│   │   ├── kitti_format (output files from script)
+│   │   │   ├── validation
+```
+#### Convert to kitti format
+```
+> python tools/create_data.py waymo --root-path data/waymo --out-dir data/waymo
+
++------------+--------+
+| category   | number |
++------------+--------+
+| Car        | 1449   |
+| Pedestrian | 394    |
+| Cyclist    | 0      |
++------------+--------+
+```
+
 ## Training
 ### PGD config
 #### Train from scratch: configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_2workers.py
