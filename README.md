@@ -6,6 +6,28 @@ Start from https://github.com/open-mmlab/mmdetection3d
 - Waymo dataset support in kitti format
 - Try other models for comparison 
 
+## Installation
+Mostly following the instructions in MMDetection3D GitHub, below steps work in SJSU HPC. 
+
+### CUDA and Pytorch
+```
+conda install -c conda-forge cudatoolkit=11.7.0
+conda install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.7 -c pytorch -c nvidia
+```
+### MMDetection3D
+```
+pip install openmim
+mim install mmengine
+mim install 'mmcv>=2.0.0rc4'
+mim install 'mmdet>=3.0.0'
+mim install "mmdet3d>=1.1.0"
+```
+### In SJSU HPC, enable GPU node and confirm CUDA is enabled
+```
+srun -p gpu --gres=gpu -n 1 -N 1 -c 4 --pty /bin/bash
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
 ## Models and Code Bases
 - **MMDetection3D**: https://github.com/open-mmlab/mmdetection3d
 
