@@ -2,6 +2,10 @@
 
 Start from https://github.com/open-mmlab/mmdetection3d
 
+## To-Do
+- Waymo dataset support in kitti format
+- Try other models for comparison 
+
 ## Models and Code Bases
 - **MMDetection3D**: https://github.com/open-mmlab/mmdetection3d
 
@@ -42,7 +46,7 @@ python tools/create_data.py kitti --root-path ./data/kitti --out-dir ./data/kitt
 | Car        | 14352  |
 +------------+--------+
 ```
-### Waymo tfrecord to kitti format
+### Waymo tfrecord to kitti format (not done yet)
 Download tfrecords (1.4.1) from here https://waymo.com/open/download/
 
 #### Waymo format structure
