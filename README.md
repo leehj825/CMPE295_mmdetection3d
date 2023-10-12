@@ -84,7 +84,7 @@ Download tfrecords (1.4.1) from here https://waymo.com/open/download/
 ```
 #### Convert to kitti format
 ```
-> python tools/create_data.py waymo --root-path data/waymo --out-dir data/waymo
+> python tools/create_data.py waymo --root-path data/waymo --out-dir data/waymo --extra-tag waymo
 
 +------------+--------+
 | category   | number |
