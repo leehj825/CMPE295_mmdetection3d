@@ -86,13 +86,27 @@ Download tfrecords (1.4.1) from here https://waymo.com/open/download/
 ```
 > python tools/create_data.py waymo --root-path data/waymo --out-dir data/waymo --extra-tag waymo
 
-+------------+--------+
-| category   | number |
-+------------+--------+
-| Car        | 1449   |
-| Pedestrian | 394    |
-| Cyclist    | 0      |
-+------------+--------+
+:
+:
+
+tfrecord_pathnames(0) data/waymo/waymo_format/training/segment-10017090168044687777_6380_000_6400_000_with_camera_labels.tfrecord
+tfrecord_pathnames(1) data/waymo/waymo_format/training/segment-10023947602400723454_1120_000_1140_000_with_camera_labels.tfrecord
+2023-10-12 06:59:41.883071: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+2023-10-12 06:59:41.885273: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+tfrecord_pathnames(3) data/waymo/waymo_format/training/segment-10061305430875486848_1080_000_1100_000_with_camera_labels.tfrecord
+2023-10-12 06:59:41.910530: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
+tfrecord_pathnames(4) data/waymo/waymo_format/training/segment-10072140764565668044_4060_000_4080_000_with_camera_labels.tfrecord
+tfrecord_pathnames(5) data/waymo/waymo_format/training/segment-10072231702153043603_5725_000_5745_000_with_camera_labels.tfrecord
+[>>                                                ] 1/21, 0.0 task/s, elapsed: 562s, ETA: 11240stfrecord_pathnames(6) data/waymo/waymo_format/training/segment-10075870402459732738_1060_000_1080_000_with_camera_labels.tfrecord
+[>>>>>>>>>                                         ] 4/21, 0.0 task/s, elapsed: 622s, ETA:  2644stfrecord_pathnames(7) data/waymo/waymo_format/training/segment-10082223140073588526_6140_000_6160_000_with_camera_labels.tfrecord
+tfrecord_pathnames(8) data/waymo/waymo_format/training/segment-10094743350625019937_3420_000_3440_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>                                    ] 6/21, 0.0 task/s, elapsed: 1107s, ETA:  2767stfrecord_pathnames(9) data/waymo/waymo_format/training/segment-10096619443888687526_2820_000_2840_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>                                  ] 7/21, 0.0 task/s, elapsed: 1124s, ETA:  2248stfrecord_pathnames(10) data/waymo/waymo_format/training/segment-10107710434105775874_760_000_780_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>>>>                               ] 8/21, 0.0 task/s, elapsed: 1184s, ETA:  1924stfrecord_pathnames(11) data/waymo/waymo_format/training/segment-10153695247769592104_787_000_807_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>>>>>>                             ] 9/21, 0.0 task/s, elapsed: 1636s, ETA:  2182stfrecord_pathnames(12) data/waymo/waymo_format/training/segment-1022527355599519580_4866_960_4886_960_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>>>>>>>>                           ] 10/21, 0.0 task/s, elapsed: 1669s, ETA:  1836stfrecord_pathnames(13) data/waymo/waymo_format/training/segment-10231929575853664160_1160_000_1180_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>>>>>>>>>>>                        ] 11/21, 0.0 task/s, elapsed: 1677s, ETA:  1524stfrecord_pathnames(14) data/waymo/waymo_format/training/segment-10235335145367115211_5420_000_5440_000_with_camera_labels.tfrecord
+[>>>>>>>>>>>>>>>>>>>>>>>>>>>>                      ] 12/21, 0.0 task/s, elapsed: 1725s, ETA:  1294stfrecord_pathnames(15) data/waymo/waymo_format/training/segment-10241508783381919015_2889_360_2909_360_with_camera_labels.tfrecord
 ```
 
 ## Training
