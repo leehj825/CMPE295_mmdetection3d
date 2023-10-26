@@ -31,7 +31,14 @@ python -c "import torch; print(torch.cuda.is_available())"
 ## Models and Code Bases
 - **MMDetection3D**: https://github.com/open-mmlab/mmdetection3d
 
-- **Model**: PGD (FCOS3D++) https://github.com/open-mmlab/mmdetection3d/tree/main/configs/pgd
+- **Model**:
+   - PGD (FCOS3D++) https://github.com/open-mmlab/mmdetection3d/tree/main/configs/pgd
+   - FCOS3D https://github.com/open-mmlab/mmdetection3d/tree/main/configs/fcos3d
+   - SMOKE https://github.com/open-mmlab/mmdetection3d/tree/main/configs/smoke
+
+- **Dataset**
+    - Kitti
+    - Waymo
 
 ## Dataset Preparation
 Kitti Dataset for 3D Object Detection: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
@@ -80,7 +87,6 @@ Download tfrecords (1.4.1) from here https://waymo.com/open/download/
 │   │   │   ├── training
 │   │   │   ├── validation
 │   │   ├── kitti_format (output files from script)
-│   │   │   ├── validation
 ```
 #### Convert to kitti format
 ```
@@ -107,6 +113,42 @@ tfrecord_pathnames(8) data/waymo/waymo_format/training/segment-10094743350625019
 [>>>>>>>>>>>>>>>>>>>>>>>                           ] 10/21, 0.0 task/s, elapsed: 1669s, ETA:  1836stfrecord_pathnames(13) data/waymo/waymo_format/training/segment-10231929575853664160_1160_000_1180_000_with_camera_labels.tfrecord
 [>>>>>>>>>>>>>>>>>>>>>>>>>>                        ] 11/21, 0.0 task/s, elapsed: 1677s, ETA:  1524stfrecord_pathnames(14) data/waymo/waymo_format/training/segment-10235335145367115211_5420_000_5440_000_with_camera_labels.tfrecord
 [>>>>>>>>>>>>>>>>>>>>>>>>>>>>                      ] 12/21, 0.0 task/s, elapsed: 1725s, ETA:  1294stfrecord_pathnames(15) data/waymo/waymo_format/training/segment-10241508783381919015_2889_360_2909_360_with_camera_labels.tfrecord
+```
+#### Waymo dataset Output in Kitti Format
+
+```
+│   ├── kitti_format
+│   │   ├── ImageSets
+│   │   ├── testing_3d_camera_only_detection
+│   │   │   ├── image_0
+│   │   │   ├── image_1
+│   │   │   ├── image_2
+│   │   │   ├── image_3
+│   │   │   ├── [others that are not used for this project]
+│   │   ├── training
+│   │   │   ├── image_0
+│   │   │   ├── image_1
+│   │   │   ├── image_2
+│   │   │   ├── image_3
+│   │   │   ├── label_0
+│   │   │   ├── label_1
+│   │   │   ├── label_2
+│   │   │   ├── label_3
+│   │   │   ├── [others that are not used for this project]
+│   │   ├── waymo_infos_test.pkl
+│   │   ├── waymo_infos_train.pkl
+│   │   ├── waymo_infos_trainval.pkl
+│   │   ├── waymo_infos_val.pkl
+```
+Object label example in Waymo dataset
+```
++------------+--------+
+| category   | number |
++------------+--------+
+| Car        | 33375  |
+| Pedestrian | 8556   |
+| Cyclist    | 294    |
++------------+--------+
 ```
 
 ## Training
