@@ -1,6 +1,6 @@
 # CMPE295_Project
 
-Start from https://github.com/open-mmlab/mmdetection3d
+The project is based on the MMDetection3D repository, https://github.com/open-mmlab/mmdetection3d
 
 ## To-Do
 - Waymo dataset support in kitti format
