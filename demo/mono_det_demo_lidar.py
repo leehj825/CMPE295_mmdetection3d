@@ -134,8 +134,8 @@ def main(args):
     lidar2cam = np.array(result.lidar2cam)
     cam2img = torch.tensor(cam2img)
     lidar2cam = torch.tensor(lidar2cam)
-    print(cam2img)
-    print(lidar2cam)
+    print("cam2img", cam2img)
+    print("lidar2cam", lidar2cam)
 
     #cam2img = np.array(result.META_INFORMATION["cam2img"])
     #lidar2cam = np.array(result.META_INFORMATION["lidar2cam"])
@@ -146,7 +146,7 @@ def main(args):
         bbox_3d_obj = CameraInstance3DBoxes(bbox.reshape(1, -1))
 
         bbox_3d_corners = bbox_3d_obj.corners
-        #print("bbox_3d_obj.corners: ", bbox_3d_obj.corners)
+        print("bbox_3d_obj.corners: ", bbox_3d_obj.corners)
         bbox_3d_corners = bbox_3d_corners.squeeze(2)  # or np.squeeze(bbox_3d_corners, axis=2)
         #print("bbox: ", bbox)
         #print("bbox_3d_obj: ", bbox_3d_obj)

@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/kitti-mono3d.py', '../_base_/models/pgd.py',
+    '../_base_/datasets/kitti-mono3d_2.py', '../_base_/models/pgd.py',
     '../_base_/schedules/mmdet-schedule-1x.py', '../_base_/default_runtime.py'
 ]
 
@@ -137,7 +137,7 @@ default_hooks = dict(
         type='CheckpointHook',
         interval=1,
         save_best='auto',
-        max_keep_ckpts=10))
+        max_keep_ckpts=20))
 
 # learning rate
 param_scheduler = [
@@ -158,8 +158,13 @@ param_scheduler = [
 
 
 default_hooks = dict(
-    logger=dict(type='LoggerHook', interval=1),
     checkpoint=dict(type='CheckpointHook', interval=1))
+visualizer = dict(
+    name='visualizer',
+    type='Det3DLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
 
 train_cfg = dict(max_epochs=10, val_interval=2)
 auto_scale_lr = dict(base_batch_size=8)

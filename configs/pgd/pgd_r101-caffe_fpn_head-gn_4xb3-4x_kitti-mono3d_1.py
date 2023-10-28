@@ -1,13 +1,10 @@
 _base_ = [
-    '../_base_/datasets/kitti-mono3d.py', '../_base_/models/pgd.py',
+    '../_base_/datasets/kitti-mono3d_1.py', '../_base_/models/pgd.py',
     '../_base_/schedules/mmdet-schedule-1x.py', '../_base_/default_runtime.py'
 ]
 
 num_workers=2 
 batch_size=2
-
-load_from = 'work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune/20231009_023518/epoch_7.pth'
-
 # model settings
 model = dict(
     data_preprocessor=dict(
@@ -140,7 +137,7 @@ default_hooks = dict(
         type='CheckpointHook',
         interval=1,
         save_best='auto',
-        max_keep_ckpts=10))
+        max_keep_ckpts=20))
 
 # learning rate
 param_scheduler = [
@@ -161,8 +158,13 @@ param_scheduler = [
 
 
 default_hooks = dict(
-    logger=dict(type='LoggerHook', interval=1),
     checkpoint=dict(type='CheckpointHook', interval=1))
+visualizer = dict(
+    name='visualizer',
+    type='Det3DLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
 
 train_cfg = dict(max_epochs=10, val_interval=2)
 auto_scale_lr = dict(base_batch_size=8)
