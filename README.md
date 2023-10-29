@@ -43,9 +43,18 @@ python -c "import torch; print(torch.cuda.is_available())"
 ## Dataset Preparation
 Kitti Dataset for 3D Object Detection: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
 
-Waymo Dataset will be used with converting to Kitti format
+### Kitti 2017 Dataset
+Download **kitti_data.zip** Kitti 2027 dataset with annotation files from here.
+- https://drive.google.com/file/d/1r_kvJ2zTgeu6X5QUtSaYa9PIpauz0Hrh/view?usp=sharing
+Unzip to get 4x separated datasets
+```
+│   ├── kitti_1
+│   ├── kitti_2
+│   ├── kitti_3
+│   ├── kitti_4
+```
 
-### Kitti Data Format
+### Create Kitti Format Annotation
 Refer: https://mmdetection3d.readthedocs.io/en/latest/user_guides/dataset_prepare.html
 ```
 │   ├── kitti
@@ -61,7 +70,7 @@ Refer: https://mmdetection3d.readthedocs.io/en/latest/user_guides/dataset_prepar
 │   │   │   ├── velodyne
 ```
 
-### Script to create kitti pickle annotation files
+#### Script to create kitti pickle annotation files
 ```
 python tools/create_data.py kitti --root-path ./data/kitti --out-dir ./data/kitti --extra-tag kitti
 ```
@@ -75,7 +84,7 @@ python tools/create_data.py kitti --root-path ./data/kitti --out-dir ./data/kitt
 | Car        | 14352  |
 +------------+--------+
 ```
-### Waymo tfrecord to kitti format (not done yet)
+### Convert Waymo tfrecord to kitti format
 Download tfrecords (1.4.1) from here https://waymo.com/open/download/
 
 #### Waymo format structure
