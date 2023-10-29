@@ -43,10 +43,11 @@ python -c "import torch; print(torch.cuda.is_available())"
 ## Dataset Preparation
 Kitti Dataset for 3D Object Detection: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
 
-### Kitti 2017 Dataset
-Download **kitti_data.zip** Kitti 2027 dataset with annotation files from here.
+### Kitti 2017 Dataset without data processing
+Download **kitti_data.zip** from below link and unzip.
 - https://drive.google.com/file/d/1r_kvJ2zTgeu6X5QUtSaYa9PIpauz0Hrh/view?usp=sharing
-Unzip to get 4x separated datasets
+
+To simulate federated learnings, datasets are separated into 4 groups
 ```
 │   ├── kitti_1
 │   ├── kitti_2
@@ -162,7 +163,7 @@ Object label example in Waymo dataset
 
 ## Training
 ### PGD config
-#### Train from scratch: configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_2workers.py
+#### Train dataset #1: configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1.py
 ```
 num_workers=2 
 batch_size=2
@@ -214,7 +215,7 @@ auto_scale_lr = dict(base_batch_size=8)
 ```
 The training script is provided under tools folder.
 ```
-> python tools/train.py configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_2workers.py
+> python tools/train.py configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1.py
 ```
 #### Re-Training: pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_tune.py
 HPC server often aborts before completing 10x epoches.  Loading from last saved checkpoint can resume the training.
