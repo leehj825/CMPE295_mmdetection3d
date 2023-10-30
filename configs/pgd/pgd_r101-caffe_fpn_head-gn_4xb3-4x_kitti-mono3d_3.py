@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/kitti-mono3d_1.py', '../_base_/models/pgd.py',
+    '../_base_/datasets/kitti-mono3d_3.py', '../_base_/models/pgd.py',
     '../_base_/schedules/mmdet-schedule-1x.py', '../_base_/default_runtime.py'
 ]
 

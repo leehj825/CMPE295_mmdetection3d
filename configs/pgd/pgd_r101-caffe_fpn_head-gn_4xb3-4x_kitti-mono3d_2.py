@@ -150,7 +150,7 @@ param_scheduler = [
     dict(
         type='MultiStepLR',
         begin=0,
-        end=10,
+        end=50,
         by_epoch=True,
         milestones=[32, 44],
         gamma=0.1)
@@ -166,5 +166,5 @@ visualizer = dict(
         dict(type='LocalVisBackend'),
     ])
 
-train_cfg = dict(max_epochs=10, val_interval=2)
+train_cfg = dict(max_epochs=50, val_interval=2)
 auto_scale_lr = dict(base_batch_size=8)

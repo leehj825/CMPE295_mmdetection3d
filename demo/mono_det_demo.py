@@ -19,10 +19,10 @@ default_annote = 'demo/data/kitti/000008.pkl'
 
 #default_cfg = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/configs/fcos3d/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_waymoD5-fov-mono3d_0003_6.py' 
 #default_chkpnt = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/work_dirs/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_waymoD5-fov-mono3d_0003_6/epoch_19.pth' 
-default_cfg = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/configs/smoke/smoke_dla34_dlaneck_gn-all_4xb8-6x_kitti-mono3d_2.py' 
+default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1.py' 
 
 #default_chkpnt = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/work_dirs/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_kitti-mono3d/epoch_2.pth'
-default_chkpnt = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/work_dirs/smoke_dla34_dlaneck_gn-all_4xb8-6x_kitti-mono3d_2/epoch_4.pth'
+default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1/epoch_7.pth'
 
 
 def read_ground_truth_from_pkl(file_path):
