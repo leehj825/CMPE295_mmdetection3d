@@ -2,6 +2,7 @@
 from argparse import ArgumentParser
 
 import mmcv
+import mmengine
 import torch
 
 from mmdet3d.apis import inference_mono_3d_detector, init_model
@@ -11,19 +12,28 @@ from mmdet3d.structures.bbox_3d import CameraInstance3DBoxes
 
 import cv2
 import numpy as np
-
 import pickle
+import os
+import imageio
 
 default_img = 'demo/data/kitti/000008.png' 
 default_annote = 'demo/data/kitti/000008.pkl'
 
-#default_cfg = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/configs/fcos3d/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_waymoD5-fov-mono3d_0003_6.py' 
-#default_chkpnt = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/work_dirs/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_waymoD5-fov-mono3d_0003_6/epoch_19.pth' 
-default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1.py' 
+#default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/fcos3d/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_kitti-mono3d_1.py' 
+#default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_kitti-mono3d_1/epoch_50.pth'
+#output_file_name = 'output_fcos3d_epoch_50.png'
 
-#default_chkpnt = '/home/001891254/CMPE295_mmdetection3d/mmdetection3d/work_dirs/fcos3d_r101-caffe-dcn_fpn_head-gn_8xb2-1x_kitti-mono3d/epoch_2.pth'
-default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1/epoch_7.pth'
+#default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1.py' 
+#default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_kitti-mono3d_1/epoch_50.pth'
+#output_file_name = 'output_pgd_epoch_50.png'
 
+#default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/smoke/smoke_dla34_dlaneck_gn-all_4xb8-6x_kitti-mono3d_1.py'
+#default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/smoke_dla34_dlaneck_gn-all_4xb8-6x_kitti-mono3d_1/epoch_72.pth'
+#output_file_name = 'output_smoke_kitti_epoch_72.png'
+
+default_cfg = '/home/001891254/295a_project/CMPE295_mmdetection3d/configs/pgd/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_0.py'
+default_chkpnt = '/home/001891254/295a_project/CMPE295_mmdetection3d/work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_0/epoch_50.pth'
+output_file_name = 'output_pgd_waymo_epoch_50_kitti_image.png'
 
 def read_ground_truth_from_pkl(file_path):
     """
@@ -82,16 +92,16 @@ def parse_args():
     parser.add_argument('--config', default=default_cfg, help='Config file')
     parser.add_argument('--checkpoint', default=default_chkpnt, help='Checkpoint file')
     parser.add_argument(
-        '--device', default='cuda:0', help='Device used for inference')
+        '--device', default='cpu', help='Device used for inference')
     parser.add_argument(
         '--cam-type',
         type=str,
         default='CAM2',
         help='choose camera type to inference')
     parser.add_argument(
-        '--score-thr', type=float, default=0.00, help='bbox score threshold')
+        '--score-thr', type=float, default=0.3, help='bbox score threshold')
     parser.add_argument(
-        '--out-dir', type=str, default='demo/output.png', help='dir to save results')
+        '--out-dir', type=str, default=output_file_name, help='dir to save results')
     parser.add_argument(
         '--show',
         action='store_true',
@@ -115,9 +125,14 @@ def main(args):
     # init visualizer
     visualizer = VISUALIZERS.build(model.cfg.visualizer)
     visualizer.dataset_meta = model.dataset_meta
+    
+    #print("args.ann", args.ann)
+    
+    annotations_list = mmengine.load(args.ann)['data_list']
+    print("annotations_list", annotations_list)
 
     # test a single image
-    result = inference_mono_3d_detector(model, args.img, args.ann,
+    result = inference_mono_3d_detector(model, args.img, annotations_list,
                                         args.cam_type)
 
     #print(result)
@@ -125,17 +140,6 @@ def main(args):
     img = mmcv.imconvert(img, 'bgr', 'rgb')
 
     data_input = dict(img=img)
-    # show the results
-    visualizer.add_datasample(
-        'result',
-        data_input,
-        data_sample=result,
-        draw_gt=False,
-        show=args.show,
-        wait_time=-1,
-        out_file=args.out_dir,
-        pred_score_thr=args.score_thr,
-        vis_task='mono_det')
 
     # Extracting the bounding boxes from the result object
     #bboxes_3d = result["bboxes_3d"].tensor.cpu().numpy()
@@ -181,9 +185,9 @@ def main(args):
                 start_point, end_point = tuple(image_points[0][start].cpu().numpy().astype(int)), tuple(image_points[0][end].cpu().numpy().astype(int))
                 image = cv2.line(image, start_point, end_point, color=(0, 255, 0), thickness=2)
 
-    output_path = "output_image.png"
-    cv2.imwrite(output_path, image)
-    print(f"Image saved to {output_path}")
+    #output_path = "output_image.png"
+    cv2.imwrite(output_file_name, image)
+    print(f"Image saved to {output_file_name}")
     
     image_gt = cv2.imread(args.img)
     # Read the ground truth bounding boxes from the .pkl file
