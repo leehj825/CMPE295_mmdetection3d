@@ -41,8 +41,10 @@ python -c "import torch; print(torch.cuda.is_available())"
 - Kitti Dataset: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
 
 ### Waymo 1.4.1 Dataset
-Download **kitti_data.zip** from below link and unzip.
-- https://drive.google.com/file/d/1r_kvJ2zTgeu6X5QUtSaYa9PIpauz0Hrh/view?usp=sharing
+From Waymo Open database, 499 tfrecord files are used for training, and 202 tfrecords are used for validation.  Due to the size, the entire dataset is located in SJSU HPC server (/scratch/cmpe295-wu/hj/waymo_data/), and it is not available for download.   For quick trial and validation, single tfrecord data for training and validation is available for download. 
+
+Download **waymo_single.zip** (5GB) from below link and unzip.
+- https://drive.google.com/file/d/1Cwsr4xLuDIuomnQqopG1xYvVkS8GpQju/view?usp=drive_link
 
 To simulate federated learnings, datasets are separated into 4 groups
 ```
@@ -119,6 +121,9 @@ After 5 epochs of training in each client, the local checkpoints are aggregated 
 <img width="855" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/5601470b-0814-4ce8-939f-9fb912d2f9c4">
 
 ### Training Time
+
+- Training dataset: 499 tfrecord files
+- Validtion dataset: 202 tfrecord files
 
 |               | training (5 ep) | validation     | Total Time (7 iterations) | Training Only |
 |---------------|----------------:|---------------:|--------------------------:|--------------:|
