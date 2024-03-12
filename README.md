@@ -118,6 +118,14 @@ After 5 epochs of training in each client, the local checkpoints are aggregated 
 ```
 <img width="855" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/5601470b-0814-4ce8-939f-9fb912d2f9c4">
 
+### Training Time
+
+|               | training (5 ep) | validation     | Total Time (7 iterations) | Training Only |
+|---------------|----------------:|---------------:|--------------------------:|--------------:|
+| FedML         |         6 hours |        4 hours |                 2.92 days |     1.75 days |
+| Single Train  |        34 hours |        4 hours |                11.08 days |     9.92 days |
+
+
 ### LET-mAP Metric Evaluation
 
 Federated Learning with averaging turns out to be more effective than learning from the entire dataset in a single training. The evaluation is done with the same dataset (202 tfrecord files). Initially, the performance of the federated learning was worse until the 15 epoch, but then it improved by the 20 epoch.
