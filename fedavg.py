@@ -66,23 +66,31 @@ def main():
     map_location = 'cuda:0'
 
     # load checkpoints
-    ckpt1 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_1_epoch_30/epoch_5.pth', map_location=map_location)
-    ckpt2 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_2_epoch_30/epoch_5.pth', map_location=map_location)
-    ckpt3 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_3_epoch_30/epoch_5.pth', map_location=map_location)
-    ckpt4 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_4_epoch_30/epoch_5.pth', map_location=map_location)
+    ckpt1 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n1/epoch_5.pth', map_location=map_location)
+    ckpt2 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n2/epoch_5.pth', map_location=map_location)
+    ckpt3 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n3/epoch_5.pth', map_location=map_location)
+    ckpt4 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n4/epoch_5.pth', map_location=map_location)
+    ckpt5 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n5/epoch_5.pth', map_location=map_location)
+    ckpt6 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n6/epoch_5.pth', map_location=map_location)
+    ckpt7 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n7/epoch_5.pth', map_location=map_location)
+    ckpt8 = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n8/epoch_5.pth', map_location=map_location)
     # ckpt = torch.load(args.checkpoint, map_location=map_location)
 
     # aggregate checkpoints weights
-    client_weights_list = [ckpt1['state_dict'], ckpt2['state_dict'], ckpt3['state_dict'], ckpt4['state_dict']]
+    client_weights_list = [ckpt1['state_dict'], ckpt2['state_dict'], ckpt3['state_dict'], ckpt4['state_dict'], ckpt5['state_dict'], ckpt6['state_dict'], ckpt7['state_dict'], ckpt8['state_dict']]
     global_weights = average_weights(client_weights_list)
 
     write_model_weights_to_file(ckpt1['state_dict'], 'checkpoint_1_weights.txt')
     write_model_weights_to_file(ckpt2['state_dict'], 'checkpoint_2_weights.txt')
     write_model_weights_to_file(ckpt3['state_dict'], 'checkpoint_3_weights.txt')
     write_model_weights_to_file(ckpt4['state_dict'], 'checkpoint_4_weights.txt')
+    write_model_weights_to_file(ckpt4['state_dict'], 'checkpoint_5_weights.txt')
+    write_model_weights_to_file(ckpt4['state_dict'], 'checkpoint_6_weights.txt')
+    write_model_weights_to_file(ckpt4['state_dict'], 'checkpoint_7_weights.txt')
+    write_model_weights_to_file(ckpt4['state_dict'], 'checkpoint_8_weights.txt')
     write_model_weights_to_file(global_weights, 'global_weights.txt')
 
-    global_model = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_1_epoch_30/epoch_5.pth')
+    global_model = torch.load('work_dirs/pgd_r101-caffe_fpn_head-gn_4xb3-4x_waymoD5-fov-mono3d_n1/epoch_5.pth')
 
     # keys
     #   - meta
@@ -93,7 +101,7 @@ def main():
 
     # edit state_dict of old model and save it
     global_model['state_dict'] = global_weights
-    torch.save(global_model, 'global_weight_epoch_35.pth')
+    torch.save(global_model, 'global_weight_pgd.pth')
 
 
 
