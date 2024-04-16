@@ -46,14 +46,23 @@ From Waymo Open database, 499 tfrecord files are used for training, and 202 tfre
 Download **waymo_single.zip** (5GB) from below link and unzip.
 - https://drive.google.com/file/d/1Cwsr4xLuDIuomnQqopG1xYvVkS8GpQju/view?usp=drive_link
 
-To simulate federated learnings, datasets are separated into 4 groups
+To simulate federated learnings, datasets are separated into 4 groups (FedAvg4).  Then each sub dataset is split half for 8 groups (FedAvg8)
 ```
 ├── waymo_1_4_1
-│   ├── all (for single training)
-│   ├── part_1 (for client #1)
-│   ├── part_2 (for client #2)
-│   ├── part_3 (for client #3)
-│   ├── part_4 (for client #4)
+│   ├── all (Centralized Training)
+│   ├── part_1 (FedAvg4)
+│   ├── part_2 (FedAvg4)
+│   ├── part_3 (FedAvg4)
+│   ├── part_4 (FedAvg4)
+│   ├── n8
+│   │   ├── part_1 (FedAvg8)
+│   │   ├── part_2 (FedAvg8)
+│   │   ├── part_3 (FedAvg8)
+│   │   ├── part_4 (FedAvg8)
+│   │   ├── part_5 (FedAvg8)
+│   │   ├── part_6 (FedAvg8)
+│   │   ├── part_7 (FedAvg8)
+│   │   ├── part_8 (FedAvg8)
 ```
 
 ## Training
@@ -127,15 +136,20 @@ After 5 epochs of training in each client, the local checkpoints are aggregated 
 
 |               | training (5 ep) | validation     | Total Time (7 iterations) | Training Only |
 |---------------|----------------:|---------------:|--------------------------:|--------------:|
-| FedML         |         6 hours |        4 hours |                 2.92 days |     1.75 days |
-| Single Train  |        34 hours |        4 hours |                11.08 days |     9.92 days |
+| FedAvg8       |         3 hours |        4 hours |                 2.04 days |     0.88 days |
+| FedAvg4       |         6 hours |        4 hours |                 2.92 days |     1.75 days |
+| Centralized   |        34 hours |        4 hours |                11.08 days |     9.92 days |
 
 
 ### LET-mAP Metric Evaluation
 
-Federated Learning with averaging turns out to be more effective than learning from the entire dataset in a single training. The evaluation is done with the same dataset (202 tfrecord files). Initially, the performance of the federated learning was worse until the 15 epoch, but then it improved by the 20 epoch.
+When utilizing federated learning with averaging, the approach demonstrates effectiveness over centralized training, using the same dataset comprising 202 tfrecord files for evaluation. Initially, both FedAvg4 and FedAvg8 models started with lower performance metrics compared to the centralized training model. However, by the 20th epoch, FedAvg8 began to surpass the centralized model's performance, indicating a delayed but eventual benefit to the federated learning process. On the other hand, FedAvg4 not only improved over the centralized model earlier, by the 15th epoch, but it also consistently outperformed both FedAvg8 and centralized training across subsequent epochs. 
 
-<img width="600" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/435337c3-2c07-4b33-8659-3fcec5c3f19d">
+<img width="600" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/74bca831-737b-4c6f-9e64-c63ed548a35b">
+
+### Inference
+
+<img width="600" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/709b74eb-7a2a-4b9e-af1c-314093fa5391)">
 
 
 ## Appendix
