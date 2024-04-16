@@ -149,7 +149,7 @@ When utilizing federated learning with averaging, the approach demonstrates effe
 
 ### Inference
 
-<img width="600" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/709b74eb-7a2a-4b9e-af1c-314093fa5391)">
+<img width="600" alt="image" src="https://github.com/leehj825/CMPE295_mmdetection3d/assets/21224335/abb6eff2-4f4f-4224-bf05-fdf2e4ede501">
 
 
 ## Appendix
